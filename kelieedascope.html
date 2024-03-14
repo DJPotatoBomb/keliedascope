@@ -7,46 +7,46 @@
 </head>
 <body>
     <h1>Kaleidoscope</h1>
-    <canvas id="myCanvas" style="border:1px solid black;"></canvas>
+    <canvas id="myCanvas" style="border:1px solid black;" width="1000" height="1000"></canvas>
 
     <script>
-        // Get the canvas element
         var canvas = document.getElementById("myCanvas");
-
-        // Set up the canvas context
         var ctx = canvas.getContext("2d");
         ctx.lineWidth = 10;
         ctx.strokeStyle = "#ffffff";
 
-        // Function to draw on canvas
         function draw(event) {
             if (event.buttons === 1) {
+                var centerX = canvas.width / 2;
+                var centerY = canvas.height / 2;
+
+                var x = event.clientX - centerX;
+                var y = event.clientY - centerY;
+
                 ctx.beginPath();
-                ctx.moveTo(event.clientX, event.clientY);
-                ctx.lineTo(event.clientX, event.clientY);
+                ctx.moveTo(centerX + x, centerY + y);
+                ctx.lineTo(centerX - x, centerY + y);
                 ctx.stroke();
 
                 ctx.beginPath();
-                ctx.moveTo(canvas.width - event.clientX, event.clientY);
-                ctx.lineTo(canvas.width - event.clientX, event.clientY);
+                ctx.moveTo(centerX + x, centerY - y);
+                ctx.lineTo(centerX - x, centerY - y);
                 ctx.stroke();
 
                 ctx.beginPath();
-                ctx.moveTo(event.clientX, canvas.height - event.clientY);
-                ctx.lineTo(event.clientX, canvas.height - event.clientY);
+                ctx.moveTo(centerX - x, centerY + y);
+                ctx.lineTo(centerX - x, centerY - y);
                 ctx.stroke();
 
                 ctx.beginPath();
-                ctx.moveTo(canvas.width - event.clientX, canvas.height - event.clientY);
-                ctx.lineTo(canvas.width - event.clientX, canvas.height - event.clientY);
+                ctx.moveTo(centerX + x, centerY + y);
+                ctx.lineTo(centerX + x, centerY - y);
                 ctx.stroke();
             }
         }
 
-        // Event listener for mousemove event
         canvas.addEventListener("mousemove", draw);
 
-        // Function to handle key presses
         function handleKeyPress(event) {
             switch(event.key) {
                 case 'r':
@@ -55,8 +55,7 @@
                 case 'g':
                     ctx.strokeStyle = "#00ff00"; // green
                     break;
-                case 'b':
-                    ctx.strokeStyle = "#0000ff"; // blue
+                case 'b':ctx.strokeStyle = "#0000ff"; // blue
                     break;
                 case 'w':
                     ctx.strokeStyle = "#ffffff"; // white
@@ -91,7 +90,6 @@
             }
         }
 
-        // Event listener for keydown event
         window.addEventListener("keydown", handleKeyPress);
     </script>
 </body>
