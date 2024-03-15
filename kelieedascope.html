@@ -14,6 +14,7 @@
             height: 100vh;
             background-color: #f0f0f0;
         }
+
         canvas {
             border: 1px solid #ccc;
         }
@@ -34,7 +35,7 @@
                 var centerY = canvas.height / 2;
 
                 var x = event.clientX - centerX;
-                var y = event.clientY - centerY;
+                var y = centerY - event.clientY; // Adjusted calculation here
 
                 ctx.beginPath();
                 ctx.moveTo(centerX + x, centerY + y);
@@ -57,7 +58,6 @@
                 ctx.stroke();
             }
         }
-
         canvas.addEventListener("mousemove", draw);
 
         function handleKeyPress(event) {
@@ -67,7 +67,7 @@
                     break;
                 case 'g':
                     ctx.strokeStyle = "#00ff00"; // green
-            break;
+                    break;
                 case 'b':
                     ctx.strokeStyle = "#0000ff"; // blue
                     break;
