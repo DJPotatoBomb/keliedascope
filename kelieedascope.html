@@ -3,11 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kaleidoscope</title>
+    <title>Canvas Drawing</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        canvas {
+            border: 1px solid #ccc;
+        }
+    </style>
 </head>
 <body>
-    <h1>Kaleidoscope</h1>
-    <canvas id="myCanvas" style="border:1px solid black;" width="1000" height="1000"></canvas>
+    <canvas id="myCanvas" width="400" height="400"></canvas>
 
     <script>
         var canvas = document.getElementById("myCanvas");
@@ -54,8 +67,9 @@
                     break;
                 case 'g':
                     ctx.strokeStyle = "#00ff00"; // green
-                    break;
-                case 'b':ctx.strokeStyle = "#0000ff"; // blue
+            break;
+                case 'b':
+                    ctx.strokeStyle = "#0000ff"; // blue
                     break;
                 case 'w':
                     ctx.strokeStyle = "#ffffff"; // white
